@@ -1,6 +1,12 @@
-Repository für KI SoSe24 Praktikum 1
+# TSP Solver using Evolutionary Algorithm
 
-Evolutionary Algorithm for TSP
+## Project Overview
+This project implements an evolutionary algorithm to solve the Traveling Salesman Problem (TSP) using the `tsplib95` library and the `berlin52` dataset. The goal is to find the shortest possible route that visits each city exactly once and returns to the origin city.
 
-We use the data from Berlin52 of the TSPLIB95 dataset.
-It has 52 cities, EUC 2D type and known optimal bound of 7542.
+## Features
+TODO
+## Installation
+To run this project, you need to install the required Python libraries:
+
+```bash
+pip install tsplib95
