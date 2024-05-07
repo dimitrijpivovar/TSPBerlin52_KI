@@ -4,7 +4,7 @@
 This project implements an evolutionary algorithm to solve the Traveling Salesman Problem (TSP) using the `tsplib95` library and the `berlin52` dataset. The goal is to find the shortest possible route that visits each city exactly once and returns to the origin city.
 
 ## Features
-TODO
+Visualize the problem via networkx and matplotpy
 ## Installation
 To run this project, you need to install the required Python libraries:
 
