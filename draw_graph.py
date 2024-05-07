@@ -11,11 +11,6 @@ def draw(problem):
             G.add_edge(edge[0], edge[1], weight=weight)
             edge_labels[(edge[0], edge[1])] = weight
 
-    pos = {}
-    graph = problem.get_graph()
-    for position in graph:
-        pos[position] = [100 * x for x in graph.nodes[position]['coord']]
-
     options = {
         "font_size": 1,
         "node_size": 10,
@@ -24,12 +19,12 @@ def draw(problem):
         "linewidths": 0.1,
         "width": 0.2,
     }
-    nx.draw_networkx(G, pos, **options)
+    nx.draw_networkx(G, **options)
 
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=1)
+    nx.draw_networkx_edge_labels(G, pos=nx.spring_layout(G), edge_labels=edge_labels, font_size=1)
 
     ax = plt.gca()
     ax.margins(0.05)
-    plt.axis("off")
+    plt.axis("on")
     plt.savefig(problem.name, dpi=600)
     plt.show()
