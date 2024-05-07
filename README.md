@@ -9,4 +9,7 @@ TODO
 To run this project, you need to install the required Python libraries:
 
 ```bash
+python -m pip install -U pip
 pip install tsplib95
+pip install matplotlib
+pip install networkx
