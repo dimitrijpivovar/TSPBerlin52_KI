@@ -43,10 +43,11 @@ def create_table(problem):
     path_of_file = './' + problem.name + '-table.png'
     if not path.exists(path_of_file):
         distance_matrix = transform_matrix.transform_low_diag_matrix_to_block_matrix(problem)
-        dataframe = pd.DataFrame(distance_matrix[0:])
+        col_and_index = list(problem.get_nodes())
+        dataframe = pd.DataFrame(distance_matrix[0:], index=col_and_index, columns=col_and_index)
         fig, ax = plt.subplots()
         ax.axis('off')
-        table = ax.table(cellText=dataframe.values, loc='center')
+        table = ax.table(cellText=dataframe.values,colLabels=dataframe.columns, rowLabels=dataframe.index, loc='center')
         table.auto_set_font_size(False)
         table.set_fontsize(4)
         table.scale(1, 1)
