@@ -5,7 +5,7 @@ class Evaluation:
     def __init__(self, problem):
         self.distance_matrix = transform_matrix.transform_low_diag_matrix_to_block_matrix(problem)
 
-    def get_fitness_for_individual(self,individual):
+    def get_fitness_for_individual(self, individual):
         """
         Als Teil der Evaluation benötigen wir die Fitness.
         Fitness ist die Summe der Gewichte der Pfade in einem Individuum.
@@ -46,8 +46,8 @@ class Evaluation:
 
     def get_x_fittest_individuals_for_population(self, population, x):
         fittest_individuals = []
-        temp_population = population
+        temp_population = population.copy()
         for i in range(x):
             fittest_individuals.append(self.get_fittest_individual_for_population(temp_population))
-            temp_population.remove(fittest_individuals[i])
+            del temp_population[i]
         return fittest_individuals
