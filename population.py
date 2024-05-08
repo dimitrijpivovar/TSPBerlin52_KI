@@ -15,10 +15,10 @@ def init_pop(nodes, population_size):
     """
     Mit dieser Population werden wir eine Evaluation machen und danach Parents auswählen
     Ablaufdiagram siehe 3. Vorlesung Seite 23.
-    :param
+    :param:
     nodes: Die Nodes des Problemgraphen. gr17 hat 17 Nodes, gr24 hat 24 Nodes.
     population_size: Die Größe der gewünschten Population.
-    :return
+    :return:
     Array der Größe population_size, Inhalt sind zufällig generierte Individuals
     """
     population = []
