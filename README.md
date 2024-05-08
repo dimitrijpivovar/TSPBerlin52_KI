@@ -6,6 +6,7 @@ This project implements an evolutionary algorithm to solve the Traveling Salesma
 ## Features
 - Visualize graph of the problem
 - Visualize distance matrix as a table
+- Visualize path traversal through graph
 - Get a population of random permutations of a given path
 - Get a paths weight
 - Crossover (i.e. only position based crossover right now)
@@ -36,4 +37,6 @@ pip install matplotlib
 pip install networkx
 pip install pandas
 pip install numpy
+pip install imageio.v2
+pip install imageio[ffmpeg]
 ```
