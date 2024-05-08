@@ -1,7 +1,7 @@
 import transform_matrix
 
 
-def get_fitness(individual, problem):
+def get_fitness_for_individual(individual, problem):
     """
     Als Teil der Evaluation benötigen wir die Fitness.
     Fitness ist die Summe der Gewichte der Pfade in einem Individuum.
@@ -20,3 +20,16 @@ def get_fitness(individual, problem):
     Die beste Fitness die für gr24 erreicht werden kann ist -1272.
     """
     return -fitness
+
+
+def get_fitness_for_generation(population, problem):
+    """
+    Kleine Helperfunction, überwiegend für debug zwecke
+    :param population:
+    :param problem:
+    :return:
+    """
+    fitness = 0
+    for individual in population:
+        fitness += get_fitness_for_individual(individual, problem)
+    return fitness

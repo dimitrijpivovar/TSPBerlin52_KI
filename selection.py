@@ -12,9 +12,13 @@ def parent_selection(population, problem):
     """
     sum_of_fitness = 0
     for i in range(len(population)):
-        sum_of_fitness += evaluation.get_fitness(population[i], problem)
+        sum_of_fitness += evaluation.get_fitness_for_individual(population[i], problem)
     avg_fitness_of_population = sum_of_fitness / len(population)
     potential_parents = list(filter(lambda individual:
-                                    evaluation.get_fitness(individual, problem) > avg_fitness_of_population,
+                                    evaluation.get_fitness_for_individual(individual, problem) > avg_fitness_of_population,
                                     population))
     return potential_parents[random.randint(0, len(potential_parents) - 1)]
+
+
+def survival_selection():
+    pass
