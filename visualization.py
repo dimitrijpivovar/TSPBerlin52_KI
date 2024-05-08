@@ -1,6 +1,12 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 import pandas as pd
+import transform_matrix
+
+
+def generate_and_save(problem):
+    draw_graph(problem)
+    create_table(problem)
 
 
 def draw_graph(problem):
@@ -31,7 +37,8 @@ def draw_graph(problem):
     plt.show()
 
 
-def create_table(distance_matrix):
+def create_table(problem):
+    distance_matrix = transform_matrix.transform_low_diag_matrix_to_block_matrix(problem)
     dataframe = pd.DataFrame(distance_matrix[0:])
     fig, ax = plt.subplots()
     ax.axis('off')
