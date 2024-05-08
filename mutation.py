@@ -19,6 +19,5 @@ def mutate(individual, mutation_probability):
         first_index = np.random.randint(0, len(individual))
         second_index = np.random.randint(0, len(individual))
         individual[first_index], individual[second_index] = individual[second_index], individual[first_index]
-    return individual
 
 
