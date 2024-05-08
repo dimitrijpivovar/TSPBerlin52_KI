@@ -25,4 +25,4 @@ def get_weight_of_canonical_path(problem):
             sum_of_weights += get_weight_from_nodeX_to_nodeY(problem, nodeX, nodeY)
             nodeX = nodeY
     sum_of_weights += get_weight_from_nodeX_to_nodeY(problem, nodeX, list(problem.get_nodes())[0])
-    print(sum_of_weights)
+    return sum_of_weights
