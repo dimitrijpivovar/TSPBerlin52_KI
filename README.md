@@ -12,9 +12,9 @@ Visualize distance matrix as a table
 
 ## To Do
 - init pop -> done
-- evaluation
+- evaluation / fitness
 - parent selection
-- variation
+- variation / mutation + cross
 - survival selection
 - stop condition
 - return calculated best outcome
