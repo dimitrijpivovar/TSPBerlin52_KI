@@ -37,24 +37,26 @@ def generate_graph(problem):
 
 class Visualization:
     def __init__(self, problem):
+        self.problem = problem
         self.graph = generate_graph(problem)
         self.pos = nx.spring_layout(self.graph[0])
 
-    def generate_and_save(self, problem):
-        self.draw_graph(problem)
-        create_table(problem)
+    def generate_and_save(self):
+        self.draw_graph()
+        create_table(self.problem)
 
-    def draw_graph(self, problem):
-        path_of_file = './' + problem.name + '-graph.png'
+    def draw_graph(self):
+        path_of_file = './' + self.problem.name + '-graph.png'
         if not path.exists(path_of_file):
+            plt.clf()
             G, edge_labels = self.graph
             options = {
                 "font_size": 1,
-                "node_size": 10,
+                "node_size": 30,
                 "node_color": "red",
                 "edgecolors": "black",
-                "linewidths": 0.1,
-                "width": 0.05,
+                "linewidths": 0.2,
+                "width": 0.2,
             }
             nx.draw_networkx(G, self.pos, **options)
 
@@ -63,30 +65,29 @@ class Visualization:
             ax = plt.gca()
             ax.margins(0.05)
             plt.axis("on")
-            plt.savefig(problem.name + '-graph', dpi=600)
+            plt.savefig(self.problem.name + '-graph', dpi=600)
 
     def create_path_traversal_video(self, path_to_traverse, filename):
         G, edge_labels = self.graph
         plt.clf()
-        nx.draw(G, self.pos, with_labels=True)
-        plt.savefig("frame0.png")
 
         traversed_edges = set()
-        for i in range(1, len(path_to_traverse)):
+        weight_accumulator = 0
+        for i in range(0, len(path_to_traverse)):
             plt.clf()
             traversed_edges.add(frozenset((path_to_traverse[i - 1], path_to_traverse[i])))
-
+            weight_accumulator += self.problem.get_weight(path_to_traverse[i - 1], path_to_traverse[i])
             colors = ['red' if frozenset(e) in traversed_edges else 'black' for e in G.edges()]
             width = [1 if frozenset(e) in traversed_edges else 0.05 for e in G.edges()]
 
-            nx.draw(G, self.pos, with_labels=True,linewidths=0.1, edge_color=colors, width=width)
-            plt.text(1, 1, f'Step: {i}', horizontalalignment='right', verticalalignment='top', transform=plt.gca().transAxes)
-            plt.text(1, 0.95, f'Weight of Path: {i}', horizontalalignment='right', verticalalignment='top', transform=plt.gca().transAxes)
-            plt.savefig(f"frame{i}.png")
+            nx.draw(G, self.pos, with_labels=True, linewidths=0.1, edge_color=colors, width=width)
+            plt.text(1, 1, f'Step: {i+1}', horizontalalignment='right', verticalalignment='top', transform=plt.gca().transAxes)
+            plt.text(1, 0.95, f'Weight of Path: {weight_accumulator}', horizontalalignment='right', verticalalignment='top', transform=plt.gca().transAxes)
+            plt.savefig(f"frame{i}.png", dpi=600)
 
         filenames = [f"frame{i}.png" for i in range(len(path_to_traverse))]
 
-        with imageio.get_writer(filename + '.mp4', mode='I', fps=2) as writer:
+        with imageio.get_writer(filename + '.mp4', mode='I', fps=0.5) as writer:
             for filename in filenames:
                 image = imageio.imread(filename)
                 writer.append_data(image)
