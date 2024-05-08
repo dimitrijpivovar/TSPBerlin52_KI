@@ -1,11 +1,11 @@
 import tsplib95 as tsplib
 
 from evaluation import Evaluation
-import mutation
-from population import init_pop
 from selection import Selection
+from visualization import Visualization
+from population import init_pop
+import mutation
 import crossover
-import visualization
 
 
 def load_problem(path):
@@ -16,13 +16,21 @@ if __name__ == '__main__':
     problem_gr24 = load_problem("TSPLIB95Data/gr24.tsp")  #bounds 1272
     problem_gr17 = load_problem("TSPLIB95Data/gr17.tsp")  #bounds 2085
     problem_gr24_opt = load_problem("TSPLIB95Data/gr24.opt.tour")
+    evaluation = Evaluation(problem_gr24)
+    selection = Selection(problem_gr24)
+    visualization = Visualization(problem_gr24)
+
     visualization.generate_and_save(problem_gr24)
     visualization.generate_and_save(problem_gr17)
     generation_size = 200
     population_size = 10
     population = init_pop(nodes=list(problem_gr24.get_nodes()), population_size=population_size)
-    evaluation = Evaluation(problem_gr24)
-    selection = Selection(problem_gr24)
+
+    print('Best individual: ', evaluation.get_fittest_individual_for_population(population))
+    print('Weight: ', evaluation.get_fitness_for_individual(evaluation.get_fittest_individual_for_population(population)))
+    visualization.create_path_traversal_video(filename='traverse_first_gen',
+                                              path_to_traverse=evaluation.get_fittest_individual_for_population(population))
+
     for i in range(generation_size):
         print('Generation: ', i, ' has a fitness of: ', evaluation.get_fitness_for_population(population))
         new_population = []
@@ -37,3 +45,6 @@ if __name__ == '__main__':
         population = new_population
     print('Best individual: ', evaluation.get_fittest_individual_for_population(population))
     print('Weight: ', evaluation.get_fitness_for_individual(evaluation.get_fittest_individual_for_population(population)))
+    visualization.create_path_traversal_video(filename='traverse_last_gen',
+                                              path_to_traverse=evaluation.get_fittest_individual_for_population(population))
+
