@@ -24,20 +24,15 @@ def position_based(parent1, parent2):
     for _ in range(len(parent1)):
         gene_picker.append(random.randint(0, 1))
     child = []
-    #Alle Gene von Parent1 einsetzen, an den Stellen wo Elemente von gene_picker = 1 sind.
     for i in range(len(parent1)):
         if gene_picker[i] == 1:
             child.append(parent1[i])
         else:
             child.append(None)
-
-    #Alle Gene die noch nicht eingesetzt wurden, in eine Liste einfügen
     missing_genes = []
     for gene in parent2:
         if gene not in child:
             missing_genes.append(gene)
-
-    #Fehlende Gene in den Genpool des Kindes einsetzen
     counter = 0
     for i in range(len(child)):
         if child[i] is None:
