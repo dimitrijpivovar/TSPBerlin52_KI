@@ -18,6 +18,7 @@ Visualize distance matrix as a table
 - survival selection
 - stop condition
 - return calculated best outcome
+
 ## Installation
 To run this project, you need to install the required Python libraries:
 
