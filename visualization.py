@@ -1,8 +1,9 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+import pandas as pd
 
 
-def draw(problem):
+def draw_graph(problem):
     G = nx.Graph()
     edge_labels = {}
     for edge in list(problem.get_edges()):
@@ -28,3 +29,15 @@ def draw(problem):
     plt.axis("on")
     plt.savefig(problem.name, dpi=600)
     plt.show()
+
+
+def create_table(distance_matrix):
+    dataframe = pd.DataFrame(distance_matrix[0:])
+    fig, ax = plt.subplots()
+    ax.axis('off')
+    table = ax.table(cellText=dataframe.values, loc='center')
+    table.auto_set_font_size(False)
+    table.set_fontsize(4)
+    table.scale(1, 1)
+
+    plt.savefig('table.png', dpi=600)
