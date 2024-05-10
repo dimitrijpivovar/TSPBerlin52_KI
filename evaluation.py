@@ -39,8 +39,9 @@ class Evaluation:
         max_fitness = self.get_fitness_for_individual(population[0])
         index_of_fittest_individual = 0
         for i in range(len(population)):
-            if max_fitness < self.get_fitness_for_individual(population[i]):
-                max_fitness = self.get_fitness_for_individual(population[i])
+            fitness_of_individual = self.get_fitness_for_individual(population[i])
+            if max_fitness < fitness_of_individual:
+                max_fitness = fitness_of_individual
                 index_of_fittest_individual = i
         return population[index_of_fittest_individual]
 
