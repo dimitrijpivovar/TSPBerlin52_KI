@@ -44,11 +44,22 @@ class Evaluation:
                 max_fitness = fitness_of_individual
                 index_of_fittest_individual = i
         return population[index_of_fittest_individual]
+    
+    def get_fittest_individual_for_population_with_index(self,population):
+        max_fitness = self.get_fitness_for_individual(population[0])
+        index_of_fittest_individual = 0
+        for i in range(len(population)):
+            fitness_of_individual = self.get_fitness_for_individual(population[i])
+            if max_fitness < fitness_of_individual:
+                max_fitness = fitness_of_individual
+                index_of_fittest_individual = i
+        return population[index_of_fittest_individual],index_of_fittest_individual
 
     def get_x_fittest_individuals_for_population(self, population, x):
         fittest_individuals = []
         temp_population = population.copy()
         for i in range(x):
-            fittest_individuals.append(self.get_fittest_individual_for_population(temp_population))
-            del temp_population[i]
+            fittest_individual, index_of_fittest_individual = self.get_fittest_individual_for_population_with_index(temp_population)
+            fittest_individuals.append(fittest_individual)
+            del temp_population[index_of_fittest_individual]
         return fittest_individuals

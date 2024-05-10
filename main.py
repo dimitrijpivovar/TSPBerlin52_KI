@@ -41,7 +41,7 @@ if __name__ == '__main__':
             parent1 = selection.parent_tournament_selection(population=population)
             parent2 = selection.parent_tournament_selection(population=population)
             child = crossover.position_based(parent1=parent1, parent2=parent2)
-            mutation.mutate(individual=child, mutation_probability=0.33)
+            child = mutation.mutate(individual=child, mutation_probability=1)
             new_population.append(child)
         population = new_population
     print('Best individual: ', evaluation.get_fittest_individual_for_population(population))
