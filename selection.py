@@ -3,8 +3,8 @@ from evaluation import Evaluation
 
 
 class Selection:
-    def __init__(self, problem):
-        self.evaluation = Evaluation(problem)
+    def __init__(self, evaluationProblem):
+        self.evaluation = evaluationProblem
 
     def parent_above_average_selection(self, population):
         """

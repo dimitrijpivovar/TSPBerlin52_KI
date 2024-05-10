@@ -17,18 +17,18 @@ if __name__ == '__main__':
     problem_gr17 = load_problem("TSPLIB95Data/gr17.tsp")  #bounds 2085
     problem_gr24_opt = load_problem("TSPLIB95Data/gr24.opt.tour")
     evaluation = Evaluation(problem_gr24)
-    selection = Selection(problem_gr24)
+    selection = Selection(evaluation)
     visualization_gr24 = Visualization(problem_gr24)
     visualization_gr17 = Visualization(problem_gr17)
 
     visualization_gr24.generate_and_save()
     visualization_gr17.generate_and_save()
     generation_size = 200
-    population_size = 10
+    population_size = 100
     population = init_pop(nodes=list(problem_gr24.get_nodes()), population_size=population_size)
 
     print('Best individual: ', evaluation.get_fittest_individual_for_population(population))
-    print('Weight: ', evaluation.get_fitness_for_individual(evaluation.get_fittest_individual_for_population(population)))
+    print('Weight: ', -evaluation.get_fitness_for_individual(evaluation.get_fittest_individual_for_population(population)))
     visualization_gr24.create_path_traversal_video(filename='traverse_first_gen',
                                               path_to_traverse=evaluation.get_fittest_individual_for_population(population))
 
@@ -45,7 +45,7 @@ if __name__ == '__main__':
             new_population.append(child)
         population = new_population
     print('Best individual: ', evaluation.get_fittest_individual_for_population(population))
-    print('Weight: ', evaluation.get_fitness_for_individual(evaluation.get_fittest_individual_for_population(population)))
+    print('Weight: ', -evaluation.get_fitness_for_individual(evaluation.get_fittest_individual_for_population(population)))
     visualization_gr24.create_path_traversal_video(filename='traverse_last_gen',
                                               path_to_traverse=evaluation.get_fittest_individual_for_population(population))
 

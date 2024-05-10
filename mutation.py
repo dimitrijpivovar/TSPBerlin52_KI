@@ -5,6 +5,7 @@ import numpy as np
 
 def mutate(individual, mutation_probability):
     """
+    Swapmutation
     Mutiert ein Individuum anhand der Mutationswahrscheinlichkeit (Teil der Praktikumsaufgabe)
     Wir wählen 2 zufällige Indizes die wir miteinander tauschen.
     :param individual:

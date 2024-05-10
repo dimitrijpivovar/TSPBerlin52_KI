@@ -8,10 +8,10 @@ def position_based(parent1, parent2):
     In: Lawrence Davis (Hrsg.): Handbook of Genetic Algorithms.
     Van Nostrand Reinhold, New York 1991, ISBN 0-442-00173-8, S. 332–349 (englisch).
     Bsp:
-    parent1 = [1 2 3 4 5 6 7]
-    parent2 = [7 6 5 4 3 2 1]
-    gene_picker = [1 0 1 0 0 0 1]
-    child_unfinished = [1 ? 3 ? ? ? 7]
+    parent1 =           [1 2 3 4 5 6 7]
+    parent2 =           [7 6 5 4 3 2 1]
+    gene_picker =       [1 0 1 0 0 0 1]
+    child_unfinished =  [1 ? 3 ? ? ? 7]
     missing_genes = {2,4,5,6}
     missing_genes_in_order_of_parent2 = (6,5,4,2)
     child_finished = [1 6 3 5 4 2 7]
