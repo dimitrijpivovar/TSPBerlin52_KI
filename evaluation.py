@@ -8,21 +8,19 @@ class Evaluation:
     def get_fitness_for_individual(self, individual):
         """
         Als Teil der Evaluation benötigen wir die Fitness.
-        Fitness ist die Summe der Gewichte der Pfade in einem Individuum.
-        Optimale Fitness ist das gegebene Bounds (gr17 2085, gr24 1272)
-        Für gr24 ist die optimale Route
-        individual = np.array([15, 10, 2, 6, 5, 23, 7, 20, 4, 9, 16, 21, 17, 18, 14, 1, 19, 13, 12, 8, 22, 3, 11, 0])
         :return:
+        Fitnesswert des Individuals
         """
-        fitness = 0
+        weight = 0
         for i in range(len(individual)):
-            fitness += self.distance_matrix[individual[i - 1]][individual[i]]
-        """
-        Ich negiere Fitness hier, damit eine größere Fitness besser bewertet werden kann.
-        Fitness ist die Summe der Weights aller Pfade im Individum. Wir wollen eine niedrige Summe der Weights.
-        Die beste Fitness die für gr24 erreicht werden kann ist -1272.
-        """
-        return -fitness
+            weight += self.distance_matrix[individual[i - 1]][individual[i]]
+        return 1.0 / (1.0 + weight)
+
+    def get_weight_for_individual(self, individual):
+        weight = 0
+        for i in range(len(individual)):
+            weight += self.distance_matrix[individual[i - 1]][individual[i]]
+        return weight
 
     def get_fitness_for_population(self, population):
         """
