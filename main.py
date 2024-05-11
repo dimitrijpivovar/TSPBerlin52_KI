@@ -32,13 +32,12 @@ if __name__ == '__main__':
     print('Weight: ', -evaluation.get_fitness_for_individual(fittest_individual_of_generation))
 
     for i in range(generation_size):
-        print('Generation: ', i, ' has a fitness of: ', evaluation.get_fitness_for_population(population))
+        print('Generation: ', i + 1, ' has a fitness of: ', evaluation.get_fitness_for_population(population))
         new_population = []
         for individual in selection.survival_selection(population=population, percentage=0.1):
             new_population.append(individual)
         for _ in range(population_size - len(new_population)):
-            parent1 = selection.parent_tournament_selection(population=population)
-            parent2 = selection.parent_tournament_selection(population=population)
+            parent1, parent2 = selection.parent_tournament_selection(population=population)
             child = crossover.position_based(parent1=parent1, parent2=parent2)
             mutation.mutate(individual=child, mutation_probability=0.33)
             new_population.append(child)
