@@ -27,10 +27,9 @@ if __name__ == '__main__':
     population_size = 100
     population = init_pop(nodes=list(problem_gr24.get_nodes()), population_size=population_size)
 
-    print('Best individual: ', evaluation.get_fittest_individual_for_population(population))
-    print('Weight: ', -evaluation.get_fitness_for_individual(evaluation.get_fittest_individual_for_population(population)))
-    visualization_gr24.create_path_traversal_video(filename='traverse_first_gen',
-                                              path_to_traverse=evaluation.get_fittest_individual_for_population(population))
+    fittest_individual_of_generation, _ = evaluation.get_fittest_individual_for_population(population)
+    print('Best individual: ', fittest_individual_of_generation)
+    print('Weight: ', -evaluation.get_fitness_for_individual(fittest_individual_of_generation))
 
     for i in range(generation_size):
         print('Generation: ', i, ' has a fitness of: ', evaluation.get_fitness_for_population(population))
@@ -38,14 +37,14 @@ if __name__ == '__main__':
         for individual in selection.survival_selection(population=population, percentage=0.1):
             new_population.append(individual)
         for _ in range(population_size - len(new_population)):
-            parent1 = selection.parent_tournament_selection(population=population)
-            parent2 = selection.parent_tournament_selection(population=population)
+            parent1 = selection.parent_tournament_selection(population=new_population)
+            parent2 = selection.parent_tournament_selection(population=new_population)
             child = crossover.position_based(parent1=parent1, parent2=parent2)
-            child = mutation.mutate(individual=child, mutation_probability=0.33)
+            mutation.mutate(individual=child, mutation_probability=0.33)
             new_population.append(child)
         population = new_population
-    print('Best individual: ', evaluation.get_fittest_individual_for_population(population))
-    print('Weight: ', -evaluation.get_fitness_for_individual(evaluation.get_fittest_individual_for_population(population)))
-    visualization_gr24.create_path_traversal_video(filename='traverse_last_gen',
-                                              path_to_traverse=evaluation.get_fittest_individual_for_population(population))
+
+    fittest_individual_of_generation, _ = evaluation.get_fittest_individual_for_population(population)
+    print('Best individual: ', fittest_individual_of_generation)
+    print('Weight: ', -evaluation.get_fitness_for_individual(fittest_individual_of_generation))
 
