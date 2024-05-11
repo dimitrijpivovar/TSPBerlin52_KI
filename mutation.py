@@ -12,17 +12,12 @@ def mutate(individual, mutation_probability):
     Individuum, welches mutiert werden soll
     :param mutation_probability:
     Mutationswahrscheinlichkeit
-    :return:
-    Ein neues Individuum mit mutierten Genen
     """
     threshold = random.random()
     if threshold < mutation_probability:
         first_index = np.random.randint(0, len(individual))
         second_index = np.random.randint(0, len(individual))
         individual[first_index], individual[second_index] = individual[second_index], individual[first_index]
-        return individual
-    else:
-        return individual
 
 
         
