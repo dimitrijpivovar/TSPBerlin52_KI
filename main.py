@@ -37,8 +37,8 @@ if __name__ == '__main__':
         for individual in selection.survival_selection(population=population, percentage=0.1):
             new_population.append(individual)
         for _ in range(population_size - len(new_population)):
-            parent1 = selection.parent_tournament_selection(population=new_population)
-            parent2 = selection.parent_tournament_selection(population=new_population)
+            parent1 = selection.parent_tournament_selection(population=population)
+            parent2 = selection.parent_tournament_selection(population=population)
             child = crossover.position_based(parent1=parent1, parent2=parent2)
             mutation.mutate(individual=child, mutation_probability=0.33)
             new_population.append(child)
