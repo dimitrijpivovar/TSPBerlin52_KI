@@ -32,7 +32,7 @@ class Selection:
         potential_parents = []
         for i in range(30):
             potential_parents.append(population[random.randint(0, len(population) - 1)])
-        return self.evaluation.get_fittest_individual_for_population(potential_parents)
+        return self.evaluation.get_fittest_individual_for_population(potential_parents)[0]
 
     def survival_selection(self, population, percentage):
         """
